@@ -4,6 +4,9 @@ This project implements various numerical methods for solving mathematical probl
 
 ## Features
 
+### Approximation
+- Least-squares function approximation
+
 ### Interpolation Methods
 - **Newton Interpolation:** Calculate interpolated values using Newton's method
 - **Lagrange Interpolation:** Calculate interpolated values using Lagrange's method
