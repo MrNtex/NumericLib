@@ -1,6 +1,6 @@
 # Metody Numeryczne
 
-This project implements various numerical methods for solving mathematical problems.
+This project implements various numerical methods for solving mathematical problems. (Made as a part of Numerical methods class)
 
 ## Features
 
