@@ -1,5 +1,2 @@
-﻿  lagrange.cpp
-  newton.cpp
-D:\Binder\NumericLib\NumericLib\src\interpolation\newton.cpp(20,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
+﻿  RunTests.cpp
   NumericLib.vcxproj -> D:\Binder\NumericLib\x64\Debug\NumericLib.exe

@@ -45,9 +45,6 @@
     <ClCompile Include="src\liniear_systems\gauss_elimination.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\nonliniear.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="include\integration\io.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>

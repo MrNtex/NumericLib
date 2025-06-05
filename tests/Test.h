@@ -16,6 +16,7 @@ struct UnitTest {
 class UnitGroup {
     std::vector<UnitTest> tests;
     std::string name;
+    int passedCount = 0;
 
 public:
     explicit UnitGroup(std::string name)
@@ -23,10 +24,13 @@ public:
 
     void AddTest(std::string name, bool result) {
         tests.emplace_back(name, result);
+        if (result) {
+			passedCount++;
+		}
     }
 
     void Print() const {
-        std::cout << "\033[1mUnit Group: " << name << "\033[0m\n";
+        std::cout << "\033[1mUnit Group: " << name << " | " << passedCount << '/' << tests.size() << "\033[0m\n";
         for (const auto& test : tests) {
             std::cout << "  [" << (test.result ? "\033[32mPASS" : "\033[31mFAIL") << "\033[0m] "
                 << test.name << '\n';

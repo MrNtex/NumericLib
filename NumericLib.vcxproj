@@ -140,7 +140,6 @@
     <ClCompile Include="src\interpolation\lagrange.cpp" />
     <ClCompile Include="src\interpolation\newton.cpp" />
     <ClCompile Include="src\liniear_systems\gauss_elimination.cpp" />
-    <ClCompile Include="src\nonliniear.cpp" />
     <ClCompile Include="tests\RunTests.cpp" />
   </ItemGroup>
   <ItemGroup>

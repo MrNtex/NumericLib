@@ -9,5 +9,4 @@ D:\Binder\NumericLib\NumericLib\src\integration\trapezoid.cpp;D:\Binder\NumericL
 D:\Binder\NumericLib\NumericLib\src\interpolation\lagrange.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\lagrange.obj
 D:\Binder\NumericLib\NumericLib\src\interpolation\newton.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\newton.obj
 D:\Binder\NumericLib\NumericLib\src\liniear_systems\gauss_elimination.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\gauss_elimination.obj
-D:\Binder\NumericLib\NumericLib\src\nonliniear.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\nonliniear.obj
 D:\Binder\NumericLib\NumericLib\tests\RunTests.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\RunTests.obj
