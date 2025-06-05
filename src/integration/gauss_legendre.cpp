@@ -1,7 +1,6 @@
 #include "integration/gauss_legendre.hpp"
 
-using namespace std;
-
+namespace NumericLib {
 
 // Wartosci dla n = 2, 3, 4 (przedzial [-1,1])
 GaussLegendreRule getGLRule(int n) {
@@ -16,7 +15,7 @@ GaussLegendreRule getGLRule(int n) {
             {0.3478548451, 0.6521451549, 0.6521451549, 0.3478548451}
         };
     default:
-        throw invalid_argument("Obslugiwane tylko 2, 3, 4 wezly.");
+        throw std::invalid_argument("Obslugiwane tylko 2, 3, 4 wezly.");
     }
 }
 template<typename Func>
@@ -45,3 +44,5 @@ double gaussLegendreIntegralSplit(double a, double b, Func func, int n, int spli
 
     return sum;
 }
+
+} // namespace NumericLib

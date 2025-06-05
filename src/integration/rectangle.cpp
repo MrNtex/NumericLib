@@ -1,6 +1,8 @@
 #include "integration/rectangle.hpp"
 
-double Rect(double step, double (*func)(double), std::vector<double>& range)
+namespace NumericLib {
+
+double Rect(double step, double (*func)(double), const std::vector<double>& range)
 {
     double h = (range[1] - range[0]) / step;
     double i = range[0];
@@ -15,3 +17,5 @@ double Rect(double step, double (*func)(double), std::vector<double>& range)
 
     return sum;
 }
+
+} // namespace NumericLib

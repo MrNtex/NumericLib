@@ -1,32 +1,36 @@
 #include "approximation.hpp"
-
+#include <vector>
+#include <cmath>
+#include <iostream>
 
 template <typename Func>
 class Approximation
 {
     Func function;
-    vector<double> coeffs;
+    std::vector<double> coeffs;
     int degree;
-    vector<double> range;
+    std::vector<double> range;
 
 public:
-    Approximation(Func func, int deg, vector<double> r) : function(func), degree(deg), range(r)
+    Approximation(Func func, int deg, std::vector<double> r) : function(func), degree(deg), range(r)
     {
         coeffs.resize(degree + 1);
-        vector<vector<double>> A(degree + 1, vector<double>(degree + 1));
-        vector<double> b(degree + 1);
+        std::vector<std::vector<double>> A(degree + 1, std::vector<double>(degree + 1));
+        std::vector<double> b(degree + 1);
 
         // macierz A - analitycznie
         for (int i = 0; i <= degree; i++) {
             for (int j = 0; j <= degree; j++) {
                 int power = i + j;
-                A[i][j] = (pow(range[1], power + 1) - pow(range[0], power + 1)) / (power + 1);
+                A[i][j] = (std::pow(range[1], power + 1) - std::pow(range[0], power + 1)) / (power + 1);
             }
         }
 
         // wektor B - Gauss-Legendre
         for (int i = 0; i <= degree; i++) {
-            b[i] = gaussLegendreIntegralSplit(range[0], range[1], [this, i](double x) { return this->function(x) * pow(x, i); }, 4, 10);
+            b[i] = gaussLegendreIntegralSplit(range[0], range[1], [this, i](double x) {
+                return this->function(x) * std::pow(x, i);
+                }, 4, 10);
         }
 
         coeffs = GaussElimination(A, b);
@@ -37,7 +41,7 @@ public:
         double result = 0.0;
         for (int i = 0; i < coeffs.size(); i++)
         {
-            result += coeffs[i] * pow(x, i);
+            result += coeffs[i] * std::pow(x, i);
         }
         return result;
     }
@@ -49,10 +53,10 @@ public:
 
     void PrintCoeffs()
     {
-        cout << "Wspolczynniki wielomianu:\n";
+        std::cout << "Wspolczynniki wielomianu:\n";
         for (int i = 0; i < coeffs.size(); i++)
         {
-            cout << "a[" << i << "] = " << coeffs[i] << "\n";
+            std::cout << "a[" << i << "] = " << coeffs[i] << "\n";
         }
     }
 };

@@ -1,0 +1,13 @@
+D:\Binder\NumericLib\NumericLib\include\integration\io.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\io.obj
+D:\Binder\NumericLib\NumericLib\include\integration\lu.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\lu.obj
+D:\Binder\NumericLib\NumericLib\NumericLib.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\NumericLib.obj
+D:\Binder\NumericLib\NumericLib\src\approximation.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\approximation.obj
+D:\Binder\NumericLib\NumericLib\src\integration\gauss_legendre.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\gauss_legendre.obj
+D:\Binder\NumericLib\NumericLib\src\integration\rectangle.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\rectangle.obj
+D:\Binder\NumericLib\NumericLib\src\integration\simpson.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\simpson.obj
+D:\Binder\NumericLib\NumericLib\src\integration\trapezoid.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\trapezoid.obj
+D:\Binder\NumericLib\NumericLib\src\interpolation\lagrange.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\lagrange.obj
+D:\Binder\NumericLib\NumericLib\src\interpolation\newton.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\newton.obj
+D:\Binder\NumericLib\NumericLib\src\liniear_systems\gauss_elimination.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\gauss_elimination.obj
+D:\Binder\NumericLib\NumericLib\src\nonliniear.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\nonliniear.obj
+D:\Binder\NumericLib\NumericLib\tests\RunTests.cpp;D:\Binder\NumericLib\NumericLib\x64\Debug\RunTests.obj

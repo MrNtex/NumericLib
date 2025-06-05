@@ -1,9 +1,10 @@
 #include "interpolation/newton.hpp"
 #include <vector>
+#include <stdexcept>
 
-using namespace std;
+namespace NumericLib {
 
-double evaluateNewtonPolynomial(double x_val, const vector<double>& x, const vector<double>& coefficients) {
+double evaluateNewtonPolynomial(double x_val, const std::vector<double>& x, const std::vector<double>& coefficients) {
     double result = coefficients[0];
     double product = 1.0;
 
@@ -15,9 +16,9 @@ double evaluateNewtonPolynomial(double x_val, const vector<double>& x, const vec
     return result;
 }
 
-vector<double> computeDividedDifferences(const vector<double>& x, const vector<double>& y) {
+std::vector<double> computeDividedDifferences(const std::vector<double>& x, const std::vector<double>& y) {
     int n = x.size();
-    vector<vector<double>> table(n, vector<double>(n));
+    std::vector<std::vector<double>> table(n, std::vector<double>(n));
 
     for (int i = 0; i < n; i++) {
         table[i][0] = y[i];
@@ -29,7 +30,7 @@ vector<double> computeDividedDifferences(const vector<double>& x, const vector<d
         }
     }
 
-    vector<double> coefficients(n);
+    std::vector<double> coefficients(n);
     for (int i = 0; i < n; i++) {
         coefficients[i] = table[0][i];
     }
@@ -37,7 +38,13 @@ vector<double> computeDividedDifferences(const vector<double>& x, const vector<d
     return coefficients;
 }
 
-double interpolate(double x_val, const vector<double>& x, const vector<double>& y) {
-    vector<double> coeffs = computeDividedDifferences(x, y);
+double InterpolateNewton(double x_val, const std::vector<double>& x, const std::vector<double>& y) {
+    if (x.size() != y.size() || x.empty()) {
+		throw std::invalid_argument("Input vectors must have the same non-zero size.");
+	}
+
+    std::vector<double> coeffs = computeDividedDifferences(x, y);
     return evaluateNewtonPolynomial(x_val, x, coeffs);
 }
+
+} // namespace NumericLib

@@ -1,46 +1,49 @@
 #include "Test.h"
-#include "interpolation/newton.hpp"
-#include "interpolation/lagrange.hpp"
-#include "nonliniear.hpp"
+#include "NumericLib.hpp"
 
 #define tol 0.01
+using namespace NumericLib;
 
-using namespace std;
-
-double testFunc(double x)
-{
-    return pow(x, 2) - 1;
+double testFunc(double x) {
+    return x * x - 1;
 }
 
-void RunTests()
-{
-    // Lagrande Interpolation
+void RunTests() {
+    {
+        UnitGroup interpolation("Interpolation");
 
-    vector<double> x = { 1, 2, 3 };
-    vector<double> y = { 2, 3, 5 };
+        std::vector<double> x = { 1, 2, 3 };
+        std::vector<double> y = { 2, 3, 5 };
 
-    double res = Interpolate(2.5, x, y, 1);
+        double res = InterpolateLagrange(2.5, x, y, 1);
+        interpolation.AddTest("Correct input", std::abs(res - 3.875) < tol);
 
-    UnitTest lagrandeInterpolation("Lagrande Interpolation", res - 3.875 < tol);
+        std::vector<double> badX = { 1, 2 };
+        std::vector<double> badY = { 2, 3, 4 };
+        interpolation.AddTest("Mismatched sizes", shouldThrowException([&]() {
+            InterpolateLagrange(2.0, badX, badY, 1);
+            }));
 
-	// Newton Interpolation
+        x = { 1, 2, 3 };
+        y = { 2, 3, 5 };
 
-    x = { 1, 2, 3 };
-    y = { 2, 3, 5 };
+        res = InterpolateNewton(2.5, x, y);
+        interpolation.AddTest("Correct input", std::abs(res - 3.875) < tol);
 
-    res = interpolate(2.5, x, y);
+        interpolation.AddTest("Empty input", shouldThrowException([&]() {
+            InterpolateNewton(2.0, {}, {});
+            }));
+    }
 
-    UnitTest newtonInterpolation("Newton Interpolation", res - 3.875 < tol);
+    /*{
+        UnitGroup nonliniear("Nonliniear Methods");
 
-    vector<UnitTest> tests = { lagrandeInterpolation, newtonInterpolation };
+        std::vector<double> dummy;
+        double res = bisection(testFunc, 0.0, 2.0, dummy);
+        nonliniear.AddTest("Correct input", std::abs(res - 1.0) < tol);
 
-    UnitGroup iterpolations("Interpolations:", tests);
-
-    /// NONLINIEAR EQUASIONS
-
-    vector<double> dummy;
-
-    res = bisection(testFunc, 0.5, 1.5, dummy);
-
-
+        nonliniear.AddTest("No sign change", shouldThrowException([&]() {
+            bisection(testFunc, 2.0, 3.0, dummy);
+            }));
+    }*/
 }

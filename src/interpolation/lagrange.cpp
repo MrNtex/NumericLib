@@ -1,7 +1,14 @@
 #include "interpolation/lagrange.hpp"
+#include <stdexcept>
 
-double Interpolate(double x, const vector<double>& xi, const vector<double>& fxi, int prec)
+namespace NumericLib {
+
+double InterpolateLagrange(double x, const std::vector<double>& xi, const std::vector<double>& fxi, int prec)
 {
+    if (xi.size() != fxi.size() || xi.empty()) {
+        throw std::invalid_argument("Input vectors must have the same non-zero size.");
+    }
+
     double sum = 0;
 
     for (int i = 0; i < xi.size(); i += prec)
@@ -22,3 +29,5 @@ double Interpolate(double x, const vector<double>& xi, const vector<double>& fxi
 
     return sum;
 }
+
+} // namespace NumericLib

@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
-using namespace std;
+namespace NumericLib {
 
-double interpolate(double x_val, const vector<double>& x, const std::vector<double>& y);
+double InterpolateNewton(double x_val, const std::vector<double>& x, const std::vector<double>& y);
+
+} // namespace NumericLib

@@ -1,6 +1,8 @@
 #include "integration/simpson.hpp"
 
-double Simpson(int split, double (*func)(double), vector<double>& range)
+namespace NumericLib {
+
+double Simpson(int split, double (*func)(double), const std::vector<double>& range)
 {
     if (split % 2 == 1) split++;
 
@@ -19,3 +21,5 @@ double Simpson(int split, double (*func)(double), vector<double>& range)
 
     return sum * h / 3;
 }
+
+} // namespace NumericLib

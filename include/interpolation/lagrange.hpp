@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
-using namespace std;
+namespace NumericLib {
 
-double Interpolate(double x, const vector<double>& xi, const vector<double>& fxi, int prec);
+double InterpolateLagrange(double x, const std::vector<double>& xi, const std::vector<double>& fxi, int prec);
+
+} // namespace NumericLib

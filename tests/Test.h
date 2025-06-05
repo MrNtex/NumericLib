@@ -2,42 +2,51 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <functional>
+#include <cmath>
 
-struct UnitTest
-{
+struct UnitTest {
     std::string name;
     bool result;
 
-    UnitTest(std::string name, bool result) {
-        this->name = name;
-        this->result = result;
-    }
+    UnitTest(std::string name, bool result)
+        : name(std::move(name)), result(result) {}
 };
 
-struct UnitGroup
-{
-public:
+class UnitGroup {
     std::vector<UnitTest> tests;
     std::string name;
+
+public:
+    explicit UnitGroup(std::string name)
+        : name(std::move(name)) {}
+
+    void AddTest(std::string name, bool result) {
+        tests.emplace_back(name, result);
+    }
 
     void Print() const {
         std::cout << "\033[1mUnit Group: " << name << "\033[0m\n";
         for (const auto& test : tests) {
-            if (test.result) {
-                std::cout << "  [\033[32mPASS\033[0m] " << test.name << '\n';
-            }
-            else {
-                std::cout << "  [\033[31mFAIL\033[0m] " << test.name << '\n';
-            }
+            std::cout << "  [" << (test.result ? "\033[32mPASS" : "\033[31mFAIL") << "\033[0m] "
+                << test.name << '\n';
         }
     }
 
-    UnitGroup(std::string name, std::vector<UnitTest> tests) {
-        this->name = name;
-        this->tests = tests;
-
+    ~UnitGroup() {
         Print();
     }
 };
+
+template<typename Func>
+bool shouldThrowException(const Func& func) {
+    try {
+        func();
+    }
+    catch (...) {
+        return true;
+    }
+    return false;
+}
 
 void RunTests();

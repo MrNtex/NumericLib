@@ -1,6 +1,8 @@
 #include "integration/trapezoid.hpp"
 
-double Trapezoids(double step, double (*func)(double), std::vector<double>& range)
+namespace NumericLib {
+
+double Trapezoids(double step, double (*func)(double), const std::vector<double>& range)
 {
     double h = (range[1] - range[0]) / step;
     double i = range[0];
@@ -19,3 +21,5 @@ double Trapezoids(double step, double (*func)(double), std::vector<double>& rang
 
     return sum / 2;
 }
+
+} // namespace NumericLib

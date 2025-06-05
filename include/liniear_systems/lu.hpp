@@ -3,15 +3,17 @@
 #include <iomanip>
 #include <numeric>
 
-using namespace std;
+namespace NumericLib {
 
-void pivot(vector<vector<double>>& A, vector<double>& b, int k);
+void pivot(std::vector<std::vector<double>>& A, std::vector<double>& b, int k);
 
-void luDecomposition(vector<vector<double>>& A, vector<vector<double>>& L,
-    vector<vector<double>>& U, vector<double>& b);
+void luDecomposition(std::vector<std::vector<double>>& A, std::vector<std::vector<double>>& L,
+    std::vector<std::vector<double>>& U, std::vector<double>& b);
 
-vector<double> forwardSubstitution(const vector<vector<double>>& L, const vector<double>& b);
+std::vector<double> forwardSubstitution(const std::vector<std::vector<double>>& L, const std::vector<double>& b);
 
-vector<double> backwardSubstitution(const vector<vector<double>>& U, const vector<double>& z);
+std::vector<double> backwardSubstitution(const std::vector<std::vector<double>>& U, const std::vector<double>& z);
 
-vector<double> solveWithFullPivotLU(vector<vector<double>> A, vector<double> b);
+std::vector<double> solveWithFullPivotLU(std::vector<std::vector<double>> A, std::vector<double> b);
+
+} // namespace NumericLib

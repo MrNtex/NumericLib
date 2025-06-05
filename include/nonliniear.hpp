@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <utility>
 
+namespace NumericLib {
+
 template<typename Func>
 double bisection(Func f, double a, double b, std::vector<double>& iter, double tol = 1e-8, int max_iter = 1000);
 
@@ -20,3 +22,5 @@ double falsi(Func f, double a, double b, std::vector<double>& iter, double tol =
 
 template<typename Func>
 std::vector<std::pair<double, double>> find_intervals(Func f, double a, double b, double step);
+
+} // namespace NumericLib

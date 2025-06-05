@@ -3,18 +3,18 @@
 #include <vector>
 #include <cmath>
 
-using namespace std;
+namespace NumericLib {
 
 template<typename Func>
-double bisection(Func f, double a, double b, vector<double>& iter, double tol, int max_iter) {
-    if (f(a) * f(b) >= 0) throw invalid_argument("Brak przeciecia osi OX.");
+double bisection(Func f, double a, double b, std::vector<double>& iter, double tol, int max_iter) {
+    if (f(a) * f(b) >= 0) throw std::invalid_argument("Brak przeciecia osi OX.");
 
     double c;
     for (int i = 0; i < max_iter; ++i) {
         c = (a + b) / 2;
         iter.push_back(c);
         double fc = f(c);
-        if (abs(fc) < tol || (b - a) / 2 < tol) return c;
+        if (std::abs(fc) < tol || (b - a) / 2 < tol) return c;
 
         (f(a) * fc < 0) ? b = c : a = c;
     }
@@ -22,14 +22,14 @@ double bisection(Func f, double a, double b, vector<double>& iter, double tol, i
 }
 
 template<typename Func, typename Derivative>
-double newton(Func f, double x0, Derivative df, vector<double>& iter, double tol, int max_iter) {
+double newton(Func f, double x0, Derivative df, std::vector<double>& iter, double tol, int max_iter) {
     for (int i = 0; i < max_iter; ++i) {
         iter.push_back(x0);
         double fx = f(x0);
-        if (abs(fx) < tol) return x0;
+        if (std::abs(fx) < tol) return x0;
 
         double dfx = df(x0);
-        if (abs(dfx) < numeric_limits<double>::epsilon()) throw runtime_error("Pochodna = 0.");
+        if (std::abs(dfx) < std::numeric_limits<double>::epsilon()) throw std::runtime_error("Pochodna = 0.");
 
         x0 -= fx / dfx;
     }
@@ -37,25 +37,26 @@ double newton(Func f, double x0, Derivative df, vector<double>& iter, double tol
 }
 
 template<typename Func>
-double newton_numeric(Func f, double x0, vector<double>& iter, double tol, int max_iter) {
+double newton_numeric(Func f, double x0, std::vector<double>& iter, double tol, int max_iter) {
     auto numerical_derivative = [f](double x) {
         double h = 1e-5;
         return (f(x + h) - f(x - h)) / (2 * h);
         };
     return newton(f, x0, numerical_derivative, iter, tol, max_iter);
 }
+
 template<typename Func>
-double secant(Func f, double x0, double x1, vector<double>& iter, double a, double b, double tol, int max_iter) {
+double secant(Func f, double x0, double x1, std::vector<double>& iter, double a, double b, double tol, int max_iter) {
     double fx0 = f(x0), fx1 = f(x1);
 
     for (int i = 0; i < max_iter; ++i) {
-        if (abs(fx1) < tol) {
+        if (std::abs(fx1) < tol) {
             iter.push_back(x1);
             return x1;
         }
 
-        if (abs(fx1 - fx0) < numeric_limits<double>::epsilon()) {
-            throw runtime_error("Dzielenie przez 0 w metodzie siecznych.");
+        if (std::abs(fx1 - fx0) < std::numeric_limits<double>::epsilon()) {
+            throw std::runtime_error("Dzielenie przez 0 w metodzie siecznych.");
         }
 
         double x2 = x1 - fx1 * (x1 - x0) / (fx1 - fx0);
@@ -65,7 +66,7 @@ double secant(Func f, double x0, double x1, vector<double>& iter, double a, doub
 
         iter.push_back(x2);
 
-        if (abs(x2 - x1) < tol) return x2;
+        if (std::abs(x2 - x1) < tol) return x2;
 
         x0 = x1;
         fx0 = fx1;
@@ -77,10 +78,10 @@ double secant(Func f, double x0, double x1, vector<double>& iter, double a, doub
 }
 
 template<typename Func>
-double falsi(Func f, double a, double b, vector<double>& iter, double tol, int max_iter) {
+double falsi(Func f, double a, double b, std::vector<double>& iter, double tol, int max_iter) {
     double fa = f(a), fb = f(b);
 
-    if (fa * fb >= 0) throw invalid_argument("Brak przeciecia osi OX.");
+    if (fa * fb >= 0) throw std::invalid_argument("Brak przeciecia osi OX.");
 
     double c = a;
 
@@ -89,9 +90,7 @@ double falsi(Func f, double a, double b, vector<double>& iter, double tol, int m
         double fc = f(c);
         iter.push_back(c);
 
-        //cout << "x: " << c << ", f(x): " << fc << "\n";
-
-        if (abs(fc) < tol) return c;
+        if (std::abs(fc) < tol) return c;
 
         if (fa * fc < 0) {
             b = c;
@@ -101,20 +100,17 @@ double falsi(Func f, double a, double b, vector<double>& iter, double tol, int m
             a = c;
             fa = fc;
         }
-        if (abs(b - a) < tol) break;
+        if (std::abs(b - a) < tol) break;
     }
 
     return c;
 }
 
-
-
 template<typename Func>
-vector<pair<double, double>> find_intervals(Func f, double a, double b, double step) {
-    vector<pair<double, double>> intervals;
+std::vector<std::pair<double, double>> find_intervals(Func f, double a, double b, double step) {
+    std::vector<std::pair<double, double>> intervals;
 
     for (double x = a; x < b; x += step) {
-
         try {
             double fx = f(x);
             double fx_step = f(x + step);
@@ -122,10 +118,11 @@ vector<pair<double, double>> find_intervals(Func f, double a, double b, double s
                 intervals.emplace_back(x, x + step);
             }
         }
-        catch (const exception& e) {
-            //cerr << "Blad dla x=" << x << ": " << e.what() << "\n";
+        catch (const std::exception& e) {
+            // Skip invalid points
         }
-
     }
     return intervals;
 }
+
+} // namespace NumericLib

@@ -1,9 +1,11 @@
 #pragma once
-#include "gauss_legendre.hpp"
-#include "gauss_elimination.hpp"
+#include "integration/gauss_legendre.hpp"
+#include "liniear_systems/gauss_elimination.hpp"
 #include <vector>
 #include <iostream>
 #include <cmath>
+
+namespace NumericLib {
 
 template <typename Func>
 class Approximation {
@@ -19,3 +21,5 @@ public:
     double operator()(double x);
     void PrintCoeffs();
 };
+
+} // namespace NumericLib
