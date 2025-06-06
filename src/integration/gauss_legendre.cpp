@@ -18,8 +18,7 @@ GaussLegendreRule getGLRule(int n) {
         throw std::invalid_argument("Obslugiwane tylko 2, 3, 4 wezly.");
     }
 }
-template<typename Func>
-double gaussLegendreIntegral(double a, double b, Func func, int n) {
+double gaussLegendreIntegral(double a, double b, double (*func)(double), int n) {
     GaussLegendreRule rule = getGLRule(n);
     double sum = 0.0;
 
@@ -31,8 +30,7 @@ double gaussLegendreIntegral(double a, double b, Func func, int n) {
 
     return ((b - a) / 2.0) * sum;
 }
-template<typename Func>
-double gaussLegendreIntegralSplit(double a, double b, Func func, int n, int splits) {
+double gaussLegendreIntegralSplit(double a, double b, double (*func)(double), int n, int splits) {
     double h = (b - a) / splits;
     double sum = 0.0;
 

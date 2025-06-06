@@ -10,9 +10,7 @@ struct GaussLegendreRule {
 };
 
 GaussLegendreRule getGLRule(int n);
-template<typename Func>
-double gaussLegendreIntegral(double a, double b, Func func, int n);
-template<typename Func>
-double gaussLegendreIntegralSplit(double a, double b, Func func, int n, int splits);
+double gaussLegendreIntegral(double a, double b, double (*func)(double), int n);
+double gaussLegendreIntegralSplit(double a, double b, double (*func)(double), int n, int splits);
 
 } // namespace NumericLib

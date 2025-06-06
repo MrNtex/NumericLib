@@ -103,7 +103,7 @@ namespace NumericLib {
                 }
             }
 
-            if (max_val == 0) throw std::runtime_error("Macierz jest osobliwa");
+            if (max_val == 0) throw std::runtime_error("Singular Matrix");
 
             // Zamiana wierszy
             if (max_row != k) {

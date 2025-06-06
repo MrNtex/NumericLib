@@ -19,8 +19,7 @@ std::vector<double> GaussElimination(std::vector<std::vector<double>>& A, std::v
 
         if (A[maxRow][i] == 0)
         {
-            std::cout << "Uklad rownan jest liniowo zalezny (brak unikalnego rozwiazania)." << std::endl;
-            exit(1);
+            throw std::runtime_error("The system of equations is linearly dependent (no unique solution).");
         }
 
         std::swap(A[i], A[maxRow]);

@@ -20,6 +20,7 @@ void RunTests() {
 
         std::vector<double> badX = { 1, 2 };
         std::vector<double> badY = { 2, 3, 4 };
+      
         interpolation.AddTest("Lagrange - Mismatched sizes", shouldThrowException([&]() {
             InterpolateLagrange(2.0, badX, badY, 1);
             }));
@@ -72,4 +73,50 @@ void RunTests() {
             }));
 
     }
+
+    {
+		UnitGroup linearSystems("Linear Systems");
+
+		std::vector<std::vector<double>> A = { {2, 1}, {1, 3} };
+		std::vector<double> b = { 5, 7 };
+		std::vector<double> x;
+
+		x = GaussElimination(A, b);
+		linearSystems.AddTest("Gauss Elimination - Correct input", VerifyMatrix(A, b, x));
+
+        A = { {2, 1}, {6, 3} };
+        b = { 5, 7 };
+        linearSystems.AddTest("Gauss Elimination - Singular matrix", shouldThrowException([&]() {
+            GaussElimination(A, b);
+            }));
+
+		A = { {2, 1}, {1, 3} };
+		b = { 5, 7 };
+		x = solveWithFullPivotLU(A, b);
+		linearSystems.AddTest("LU Decomposition - Correct input", VerifyMatrix(A, b, x));
+
+		A = { {2, 1}, {6, 3} };
+		b = { 5, 7 };
+        linearSystems.AddTest("LU Decomposition - Singular matrix", shouldThrowException([&]() {
+            solveWithFullPivotLU(A, b);
+			}));
+	}
+
+    {
+		UnitGroup integration("Integration");
+
+		auto f = [](double x) { return x * x; };
+
+        double res = Trapezoids(10000, f, { 0.0, 2.0 });
+		integration.AddTest("Trapezoid - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+
+		res = Simpson(100, f, { 0.0, 2.0 });
+		integration.AddTest("Simpson - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+
+		res = Rect(10000, f, { 0.0, 2.0 });
+		integration.AddTest("Rectangle - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+
+		res = gaussLegendreIntegralSplit(0, 2, f, 4, 10);
+		integration.AddTest("Gauss-Legendre - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+	}
 }
