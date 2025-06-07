@@ -5,6 +5,8 @@
 #include <iostream>
 #include "NumericLib.hpp"
 
+using namespace NumericLib;
+
 template <typename Func>
 class Approximation
 {
@@ -38,12 +40,12 @@ public:
 
         // wektor B - Gauss-Legendre
         for (int i = 0; i <= degree; i++) {
-            b[i] = NumericLib::gaussLegendreIntegralSplit(range[0], range[1], [this, i](double x) {
+            b[i] = gaussLegendreIntegralSplit(range[0], range[1], [this, i](double x) {
                 return this->function(x) * std::pow(x, i);
                 }, 4, 10);
         }
 
-        coeffs = NumericLib::GaussElimination(A, b);
+        coeffs = GaussElimination(A, b);
     }
 
     double Approximate(double x)
