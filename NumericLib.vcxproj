@@ -132,8 +132,6 @@
     <ClCompile Include="include\integration\io.cpp" />
     <ClCompile Include="include\integration\lu.cpp" />
     <ClCompile Include="NumericLib.cpp" />
-    <ClCompile Include="src\approximation.cpp" />
-    <ClCompile Include="src\integration\gauss_legendre.cpp" />
     <ClCompile Include="src\integration\rectangle.cpp" />
     <ClCompile Include="src\integration\simpson.cpp" />
     <ClCompile Include="src\integration\trapezoid.cpp" />

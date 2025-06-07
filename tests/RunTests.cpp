@@ -20,7 +20,7 @@ void RunTests() {
 
         std::vector<double> badX = { 1, 2 };
         std::vector<double> badY = { 2, 3, 4 };
-      
+
         interpolation.AddTest("Lagrange - Mismatched sizes", shouldThrowException([&]() {
             InterpolateLagrange(2.0, badX, badY, 1);
             }));
@@ -51,20 +51,20 @@ void RunTests() {
 
         nonliniear.AddTest("Newton - Correct input", std::abs(res - 1.0) < tol);
         nonliniear.AddTest("Newton - Zero derivative", shouldThrowException([&]() {
-			newton(testFunc, 0.0, [](double x) { return 0; });
-			}));
-        
+            newton(testFunc, 0.0, [](double x) { return 0; });
+            }));
+
         res = newton_numeric(testFunc, 1.0);
         nonliniear.AddTest("Newton Numeric - Correct input", std::abs(res - 1.0) < tol);
         nonliniear.AddTest("Newton Numeric - Zero derivative", shouldThrowException([&]() {
-			newton_numeric(testFunc, 0.0);
-		}));
+            newton_numeric(testFunc, 0.0);
+            }));
 
         res = secant(testFunc, 0.0, 2.0, -1.0, 3.0);
         nonliniear.AddTest("Secant - Correct input", std::abs(res - 1.0) < tol);
         nonliniear.AddTest("Secant - Division by zero", shouldThrowException([&]() {
-			secant(testFunc, -.5, .5, -1, 1.5);
-			}));
+            secant(testFunc, -.5, .5, -1, 1.5);
+            }));
 
         res = falsi(testFunc, 0.0, 2.0);
         nonliniear.AddTest("Falsi - Correct input", std::abs(res - 1.0) < tol);
@@ -75,14 +75,14 @@ void RunTests() {
     }
 
     {
-		UnitGroup linearSystems("Linear Systems");
+        UnitGroup linearSystems("Linear Systems");
 
-		std::vector<std::vector<double>> A = { {2, 1}, {1, 3} };
-		std::vector<double> b = { 5, 7 };
-		std::vector<double> x;
+        std::vector<std::vector<double>> A = { {2, 1}, {1, 3} };
+        std::vector<double> b = { 5, 7 };
+        std::vector<double> x;
 
-		x = GaussElimination(A, b);
-		linearSystems.AddTest("Gauss Elimination - Correct input", VerifyMatrix(A, b, x));
+        x = GaussElimination(A, b);
+        linearSystems.AddTest("Gauss Elimination - Correct input", VerifyMatrix(A, b, x));
 
         A = { {2, 1}, {6, 3} };
         b = { 5, 7 };
@@ -90,33 +90,51 @@ void RunTests() {
             GaussElimination(A, b);
             }));
 
-		A = { {2, 1}, {1, 3} };
-		b = { 5, 7 };
-		x = solveWithFullPivotLU(A, b);
-		linearSystems.AddTest("LU Decomposition - Correct input", VerifyMatrix(A, b, x));
+        A = { {2, 1}, {1, 3} };
+        b = { 5, 7 };
+        x = solveWithFullPivotLU(A, b);
+        linearSystems.AddTest("LU Decomposition - Correct input", VerifyMatrix(A, b, x));
 
-		A = { {2, 1}, {6, 3} };
-		b = { 5, 7 };
+        A = { {2, 1}, {6, 3} };
+        b = { 5, 7 };
         linearSystems.AddTest("LU Decomposition - Singular matrix", shouldThrowException([&]() {
             solveWithFullPivotLU(A, b);
-			}));
-	}
+            }));
+    }
 
     {
-		UnitGroup integration("Integration");
+        UnitGroup integration("Integration");
 
-		auto f = [](double x) { return x * x; };
+        auto f = [](double x) { return x * x; };
 
         double res = Trapezoids(10000, f, { 0.0, 2.0 });
-		integration.AddTest("Trapezoid - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+        integration.AddTest("Trapezoid - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
 
-		res = Simpson(100, f, { 0.0, 2.0 });
-		integration.AddTest("Simpson - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+        res = Simpson(100, f, { 0.0, 2.0 });
+        integration.AddTest("Simpson - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
 
-		res = Rect(10000, f, { 0.0, 2.0 });
-		integration.AddTest("Rectangle - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+        res = Rect(10000, f, { 0.0, 2.0 });
+        integration.AddTest("Rectangle - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
 
-		res = gaussLegendreIntegralSplit(0, 2, f, 4, 10);
-		integration.AddTest("Gauss-Legendre - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
-	}
+        res = gaussLegendreIntegralSplit(0, 2, f, 4, 10);
+        integration.AddTest("Gauss-Legendre - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+    }
+
+    {
+		UnitGroup approximation("Approximation");
+		
+        auto f = [](double x) { return std::sin(x); };
+
+        Approximation<decltype(f)> approx(f, 2, { 0.0, 2.0 });
+		approximation.AddTest("Approximation - Correct input", std::abs(approx.Approximate(1.0) - std::sin(1.0)) < tol);
+    
+        approximation.AddTest("Approximation - reversed range", shouldThrowException([&]() {
+            Approximation<decltype(f)> bad(f, 2, { 2.0, 0.0 });
+            }));
+
+		approximation.AddTest("Approximation - negative degree", shouldThrowException([&]() {
+			Approximation<decltype(f)> bad(f, -1, { 0.0, 2.0 });
+			}));
+    }
+
 }

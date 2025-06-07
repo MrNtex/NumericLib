@@ -1,0 +1,10 @@
+C:\MetodyNumeryczneProjekt\NumericLib\include\integration\io.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\io.obj
+C:\MetodyNumeryczneProjekt\NumericLib\include\integration\lu.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\lu.obj
+C:\MetodyNumeryczneProjekt\NumericLib\NumericLib.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\NumericLib.obj
+C:\MetodyNumeryczneProjekt\NumericLib\src\integration\rectangle.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\rectangle.obj
+C:\MetodyNumeryczneProjekt\NumericLib\src\integration\simpson.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\simpson.obj
+C:\MetodyNumeryczneProjekt\NumericLib\src\integration\trapezoid.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\trapezoid.obj
+C:\MetodyNumeryczneProjekt\NumericLib\src\interpolation\lagrange.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\lagrange.obj
+C:\MetodyNumeryczneProjekt\NumericLib\src\interpolation\newton.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\newton.obj
+C:\MetodyNumeryczneProjekt\NumericLib\src\liniear_systems\gauss_elimination.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\gauss_elimination.obj
+C:\MetodyNumeryczneProjekt\NumericLib\tests\RunTests.cpp;C:\MetodyNumeryczneProjekt\NumericLib\NumericLib\x64\Debug\RunTests.obj
