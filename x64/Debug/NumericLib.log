@@ -1,3 +1,0 @@
-﻿  gauss_elimination.cpp
-D:\Binder\NumericLib\NumericLib\src\liniear_systems\gauss_elimination.cpp(7,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  NumericLib.vcxproj -> D:\Binder\NumericLib\x64\Debug\NumericLib.exe

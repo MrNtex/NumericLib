@@ -3,7 +3,6 @@
 #include <vector>
 #include <cmath>
 #include <iostream>
-#include "NumericLib.hpp"
 
 namespace NumericLib {
     template <typename Func>
