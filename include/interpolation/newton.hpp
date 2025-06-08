@@ -20,7 +20,6 @@ namespace NumericLib {
 	/// <exception cref="std::invalid_argument">
 	/// thrown if the input vectors x and y do not have the same size or if they are empty
 	/// </exception>
-
 	double InterpolateNewton(double x_val, const std::vector<double>& x, const std::vector<double>& y);
 
 } // namespace NumericLib
