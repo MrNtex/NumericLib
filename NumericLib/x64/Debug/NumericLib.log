@@ -1,11 +1,10 @@
-﻿  RunTests.cpp
-C:\MetodyNumeryczneProjekt\NumericLib\include\utils.hpp(26,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'tests/RunTests.cpp')
-  
-C:\MetodyNumeryczneProjekt\NumericLib\include\utils.hpp(41,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'tests/RunTests.cpp')
-  
-C:\MetodyNumeryczneProjekt\NumericLib\include\utils.hpp(57,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'tests/RunTests.cpp')
-  
+﻿  rectangle.cpp
+  simpson.cpp
+  trapezoid.cpp
+  lagrange.cpp
+  newton.cpp
+  gauss_elimination.cpp
+C:\MetodyNumeryczneProjekt\NumericLib\src\interpolation\newton.cpp(47,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\MetodyNumeryczneProjekt\NumericLib\src\liniear_systems\gauss_elimination.cpp(22,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
   NumericLib.vcxproj -> C:\MetodyNumeryczneProjekt\NumericLib\x64\Debug\NumericLib.exe
