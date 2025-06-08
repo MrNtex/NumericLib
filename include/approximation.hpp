@@ -4,8 +4,7 @@
 #include <cmath>
 #include <iostream>
 
-namespace NumericLib
-{
+namespace NumericLib {
     template <typename Func>
     class Approximation
     {
@@ -72,5 +71,4 @@ namespace NumericLib
         }
     };
 }
-
 
