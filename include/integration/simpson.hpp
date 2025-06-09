@@ -17,6 +17,5 @@ namespace NumericLib {
     /// <returns>
     /// calculated approximation of the integral of the function over the specified range using simpsons's method
     /// </returns>
-    /// 
 	double Simpson(int split, double (*func)(double), const std::vector<double>& range);
 } // namespace NumericLib
