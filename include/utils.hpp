@@ -21,7 +21,7 @@ double GetValueHorner(double x, std::vector<double>& ai, int n = 3) {
     return value;
 }
 
-void PrintMatrix(vector<vector<double>>& A)
+void PrintMatrix(std::vector<std::vector<double>>& A)
 {
     int n = A.size();
 
@@ -29,14 +29,14 @@ void PrintMatrix(vector<vector<double>>& A)
     {
         for (int j = 0; j < n; j++)
         {
-            cout << setw(10) << A[i][j] << " ";
+            std::cout << std::setw(10) << A[i][j] << " ";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
-void PrintMatrix(vector<vector<double>>& A, vector<double>& b)
+void PrintMatrix(std::vector<std::vector<double>>& A, std::vector<double>& b)
 {
     int n = A.size();
 
@@ -44,15 +44,15 @@ void PrintMatrix(vector<vector<double>>& A, vector<double>& b)
     {
         for (int j = 0; j < n; j++)
         {
-            cout << setw(10) << A[i][j] << " ";
+            std::cout << std::setw(10) << A[i][j] << " ";
         }
 
-        cout << "| " << b[i] << endl;
+        std::cout << "| " << b[i] << std::endl;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
-bool VerifyMatrix(vector<vector<double>>& A, vector<double>& b, vector<double>& x)
+bool VerifyMatrix(std::vector<std::vector<double>>& A, std::vector<double>& b, std::vector<double>& x)
 {
     int n = A.size();
 

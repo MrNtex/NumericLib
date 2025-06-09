@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <stdexcept>
+#include <vector>
+#include <cmath>
 
 namespace NumericLib {
     /// <summary>
@@ -17,5 +20,6 @@ namespace NumericLib {
     /// <returns>
     /// calculated approximation of the integral of the function over the specified range using the trapzoids method
     /// </returns>
+    /// @exception std::invalid_argument thrown if the input range does not contain exactly two elements in the correct order
 	double Trapezoids(double step, double (*func)(double), const std::vector<double>& range);
 } // namespace NumericLib

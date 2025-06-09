@@ -8,6 +8,10 @@ double testFunc(double x) {
     return x * x - 1;
 }
 
+double infiniteFunc(double x) {
+	return 1.0 / x;
+}
+
 void RunTests() {
     {
         UnitGroup interpolation("Interpolation");
@@ -109,15 +113,27 @@ void RunTests() {
 
         double res = Trapezoids(10000, f, { 0.0, 2.0 });
         integration.AddTest("Trapezoid - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+        integration.AddTest("Trapezoid - Empty range", shouldThrowException([&]() {
+			Trapezoids(10000, f, {});
+			}));
 
         res = Simpson(100, f, { 0.0, 2.0 });
         integration.AddTest("Simpson - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+        integration.AddTest("Simpson - Incorrect range", shouldThrowException([&]() {
+			Simpson(100, f, {1,-3});
+			}));
 
         res = Rect(10000, f, { 0.0, 2.0 });
         integration.AddTest("Rectangle - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+        integration.AddTest("Rectangle - Infinite value", shouldThrowException([&]() {
+            Rect(10000, infiniteFunc, { 0, 5 });
+            }));
 
         res = gaussLegendreIntegralSplit(0, 2, f, 4, 10);
         integration.AddTest("Gauss-Legendre - Correct input", std::abs(res - (8.0 / 3.0)) < tol);
+        integration.AddTest("Gauss-Legendre - Incorrect quadrature rule", shouldThrowException([&]() {
+			gaussLegendreIntegralSplit(0, 2, f, -1, 20);
+			}));
     }
 
     {
@@ -137,4 +153,31 @@ void RunTests() {
 			}));
     }
 
+    {
+        UnitGroup ode("Ordinary Differential Equations");
+        auto f = [](double x, double y) { return x + y; };
+
+        std::vector<double> res = ode::eulerMethod(0.0, f, 0.0, 1.0, 1000);
+        ode.AddTest("Euler - Correct input", std::abs(res.back() - 0.718281828459045) < tol);
+        ode.AddTest("Euler - Invalid range", shouldThrowException([&]() {
+            ode::eulerMethod(0.0, f, 1.0, 0.0, 1);
+			}));
+        res = ode::heunMethod(0.0, f, 0.0, 1.0, 1000);
+        ode.AddTest("Heun - Correct input", std::abs(res.back() - 0.718281828459045) < tol);
+        ode.AddTest("Heun - Zero step size", shouldThrowException([&]() {
+            ode::heunMethod(0.0, f, 1.0, 1.0, 1);
+            }));
+        res = ode::midpointMethod(0.0, f, 0.0, 1.0, 1000);
+        ode.AddTest("Midpoint - Correct input", std::abs(res.back() - 0.718281828459045) < tol);
+        ode.AddTest("Midpoint - Invalid range", shouldThrowException([&]() {
+			ode::midpointMethod(0.0, f, 1.0, 0.0, 1);
+			}));
+        res = ode::midpointMethod(0, f, 0, 1, 10);
+
+        res = ode::rungeKutta4Method(0, f, 0, 1, 10);
+		ode.AddTest("Runge-Kutta - Correct input", std::abs(res.back() - 0.718281828459045) < tol);
+        ode.AddTest("Runge-Kutta - Zero step size", shouldThrowException([&]() {
+            ode::rungeKutta4Method(0, f, 1, 1, 1);
+            }));
+    }
 }
