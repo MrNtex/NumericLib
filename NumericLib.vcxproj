@@ -144,7 +144,6 @@
     <ClInclude Include="include\approximation.hpp" />
     <ClInclude Include="include\integration\gauss_legendre.hpp" />
     <ClInclude Include="include\integration\io.hpp" />
-    <ClInclude Include="include\integration\lu.hpp" />
     <ClInclude Include="include\integration\rectangle.hpp" />
     <ClInclude Include="include\integration\simpson.hpp" />
     <ClInclude Include="include\integration\trapezoid.hpp" />
