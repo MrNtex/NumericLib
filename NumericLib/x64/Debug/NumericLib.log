@@ -1,10 +1,4 @@
-﻿  rectangle.cpp
-  simpson.cpp
-  trapezoid.cpp
-  lagrange.cpp
-  newton.cpp
-  gauss_elimination.cpp
-C:\MetodyNumeryczneProjekt\NumericLib\src\interpolation\newton.cpp(47,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\MetodyNumeryczneProjekt\NumericLib\src\liniear_systems\gauss_elimination.cpp(22,15): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
+﻿  numeric_examples.cpp
+C:\MetodyNumeryczneProjekt\NumericLib\examples\numeric_examples.cpp(61,65): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\MetodyNumeryczneProjekt\NumericLib\examples\numeric_examples.cpp(14,2): warning C4102: 'std': unreferenced label
   NumericLib.vcxproj -> C:\MetodyNumeryczneProjekt\NumericLib\x64\Debug\NumericLib.exe
