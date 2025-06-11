@@ -106,7 +106,7 @@ namespace NumericLib {
         /// </summary>
         void PrintCoeffs()
         {
-            std::cout << "Wspolczynniki wielomianu:\n";
+            std::cout << "Polynomial coefficients:\n";
             for (int i = 0; i < coeffs.size(); i++)
             {
                 std::cout << "a[" << i << "] = " << coeffs[i] << "\n";

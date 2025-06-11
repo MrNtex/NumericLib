@@ -6,12 +6,12 @@
 
 using namespace NumericLib;
 
-int main()
+int RunExamples()
 {
 	//#1
 	//Example of using methods for calculating integrals: rectangle, trapezoids, simpson and gauss-legendre 
 
-	std:cout << "Integration methods example:\n\n";
+	std::cout << "Integration methods example:\n\n";
 
 	//Range of integration
 	std::vector<double> range = { 0.0, M_PI};
