@@ -19,5 +19,4 @@
 #include "nonliniear.hpp"
 #include "utils.hpp"
 
-
 #endif // !NUMERICLIB_HPP

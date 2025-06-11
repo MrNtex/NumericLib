@@ -8,11 +8,9 @@ namespace NumericLib {
         if (xi.size() != fxi.size() || xi.empty()) {
             throw std::invalid_argument("Input vectors must have the same non-zero size.");
         }
-
-        if (prec > xi.size()) {
-            throw std::invalid_argument("Parameter 'prec' exceeds the number of available points.");
-        }
-
+		if (prec <= 0 || prec > xi.size()) {
+			throw std::invalid_argument("Precision must be a positive integer less than or equal to the size of input vectors.");
+		}
         double sum = 0;
 
         for (int i = 0; i < prec; ++i)

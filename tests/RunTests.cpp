@@ -19,7 +19,7 @@ void RunTests() {
         std::vector<double> x = { 1, 2, 3 };
         std::vector<double> y = { 2, 3, 5 };
 
-        double res = InterpolateLagrange(2.5, x, y, 4);
+        double res = InterpolateLagrange(2.5, x, y, 3);
         interpolation.AddTest("Lagrange - Correct input", std::abs(res - 3.875) < tol);
 
         std::vector<double> badX = { 1, 2 };

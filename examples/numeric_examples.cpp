@@ -1,12 +1,11 @@
-#include<iostream>
-#include<NumericLib.hpp>
-#include <cmath>
+
+#include "numeric_examples.hpp"
 
 #define M_PI 3.14159265358979323846
 
 using namespace NumericLib;
 
-int RunExamples()
+void RunExamples()
 {
 	//#1
 	//Example of using methods for calculating integrals: rectangle, trapezoids, simpson and gauss-legendre 
@@ -118,6 +117,4 @@ int RunExamples()
 		double approxVal = approx(x);
 		std::cout << "x = " << x << ", f(x) = " << real << ", approx(x) = " << approxVal << '\n';
 	}
-
-	return 0;
 }
