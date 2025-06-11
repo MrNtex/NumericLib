@@ -39,7 +39,36 @@ This project implements various numerical methods for solving mathematical probl
 
 Each numerical method is implemented as a template function, allowing for flexible use with different types of functions. The methods are organized in separate header files for easy inclusion and use.
 
-### Example: Newton Interpolation
+## 📦 Installation & Usage
+
+Download:
+
+- `NumericLib.lib`
+- `include/` directory with the required header files (e.g., `numeric_examples.hpp`)
+
+### 📌 Integrating into Your Visual Studio Project
+
+1. **Copy the `NumericLib.lib` file and `include/` directory into your project folder or somewhere accessible.**
+
+2. In your Visual Studio project:
+   → Go to `Project → Properties`
+
+3. Under `C/C++ → General → Additional Include Directories`  
+   → Add the path to your `include/` folder
+
+4. Under `Linker → General → Additional Library Directories`  
+   → Add the path to the folder containing `NumericLib.lib`
+
+5. Under `Linker → Input → Additional Dependencies`   
+   → Add: NumericLib.lib
+
+6. Include the library headers in your code:
+```cpp
+#include "NumericLib.hpp"
+```
+7. Build and run your project.
+
+### 📌 Example
 ```cpp
 vector<double> x_vals = { -1.0, 0.0, 1.0, 2.0 };
 vector<double> y_vals = { /* corresponding y values */ };
