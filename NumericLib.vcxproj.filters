@@ -56,9 +56,6 @@
     <ClInclude Include="include\integration\gauss_legendre.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\integration\io.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\integration\rectangle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

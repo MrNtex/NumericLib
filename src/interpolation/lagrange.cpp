@@ -9,19 +9,21 @@ namespace NumericLib {
             throw std::invalid_argument("Input vectors must have the same non-zero size.");
         }
 
+        if (prec > xi.size()) {
+            throw std::invalid_argument("Parameter 'prec' exceeds the number of available points.");
+        }
+
         double sum = 0;
 
-        for (int i = 0; i < xi.size(); i += prec)
+        for (int i = 0; i < prec; ++i)
         {
             double y = fxi[i];
-            double pi = 1;
+            double pi = 1.0;
 
-            for (int j = 0; j < fxi.size(); j += prec)
+            for (int j = 0; j < prec; ++j)
             {
                 if (i == j) continue;
-                double frac = (x - xi[j]) / (xi[i] - xi[j]);
-
-                pi *= frac;
+                pi *= (x - xi[j]) / (xi[i] - xi[j]);
             }
 
             sum += pi * y;
