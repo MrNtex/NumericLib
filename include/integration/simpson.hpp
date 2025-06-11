@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <stdexcept>
+#include <vector>
+#include <cmath>
 
 namespace NumericLib {
     /// <summary>
@@ -17,5 +20,6 @@ namespace NumericLib {
     /// <returns>
     /// calculated approximation of the integral of the function over the specified range using simpsons's method
     /// </returns>
+    /// @exception std::invalid_argument thrown if the input range does not contain exactly two elements in the correct order
 	double Simpson(int split, double (*func)(double), const std::vector<double>& range);
 } // namespace NumericLib

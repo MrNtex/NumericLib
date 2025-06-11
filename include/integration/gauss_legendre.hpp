@@ -38,7 +38,7 @@ namespace NumericLib {
                 {0.3478548451, 0.6521451549, 0.6521451549, 0.3478548451}
             };
         default:
-            throw std::invalid_argument("Obslugiwane tylko 2, 3, 4 wezly.");
+            throw std::invalid_argument("Only 2, 3 or 4 are valid values");
         }
     }
 
@@ -65,6 +65,7 @@ namespace NumericLib {
     /// </returns>
     template <typename Func>
     double gaussLegendreIntegral(double a, double b, Func func, int n) {
+
         GaussLegendreRule rule = getGLRule(n);
         double sum = 0.0;
 
@@ -102,6 +103,10 @@ namespace NumericLib {
     /// </returns>
     template <typename Func>
         double gaussLegendreIntegralSplit(double a, double b, Func func, int n, int splits) {
+            if (splits <= 0) {
+				throw std::invalid_argument("Number of splits must be greater than 0");
+			}
+
             double h = (b - a) / splits;
             double sum = 0.0;
 
